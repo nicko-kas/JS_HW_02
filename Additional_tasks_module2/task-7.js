@@ -17,7 +17,6 @@
 //  isLoginUnique только проверяет есть ли такой логин в массиве и возвращает true или false.
 //  isLoginValid только проверяет валидный ли логин и возвращает true или false.
 //  addLogin добавляет или не добавляет логин в массив. При этом для проверок условия добавления использует результаты вызовов других функций - isLoginUnique и isLoginValid.
-
 const logins = ["Mango", "robotGoogles", "Poly", "Aj4x1sBozz", "qwerty123"];
 const isLoginValid = function (login) {
   return login.length > 3 && login.length < 17 ? true : false;
@@ -26,32 +25,15 @@ const isLoginUnique = function (allLogins, login) {
   return allLogins.includes(login) ? false : true;
 };
 const addLogin = function (allLogins, login) {
-  if (!isLoginValid(login)) {
-    return "Ошибка! Логин должен быть от 4 до 16 символов";
-  } else if (!isLoginUnique(allLogins, login)) {
-    return "Такой логин уже используется!";
-  } else {
+  if (isLoginValid(login) && isLoginUnique(allLogins, login)) {
+    logins.push(login);
     return "Логин успешно добавлен";
+  } else if (!isLoginValid(login)) {
+    return "Ошибка! Логин должен быть от 4 до 16 символов";
+  } else {
+    return "Такой логин уже используется!";
   }
 };
-
-// const logins = ["Mango", "robotGoogles", "Poly", "Aj4x1sBozz", "qwerty123"];
-// const isLoginValid = function (login) {
-//   return login.length > 3 && login.length < 17 ? true : false;
-// };
-// const isLoginUnique = function (allLogins, login) {
-//   return allLogins.includes(login) ? false : true;
-// };
-// const addLogin = function (allLogins, login) {
-//   if (isLoginValid(login) && isLoginUnique(allLogins, login)) {
-//     logins.push(login);
-//     return "Логин успешно добавлен";
-//   } else if (!isLoginValid(login)) {
-//     return "Ошибка! Логин должен быть от 4 до 16 символов";
-//   } else {
-//     return "Такой логин уже используется!";
-//   }
-// };
 /*
  * Вызовы функции для проверки работоспособности твоей реализации.
  */
